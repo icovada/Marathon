@@ -107,6 +107,8 @@ for i in hostsfile:
 	except KeyboardInterrupt:
 		sys.exit("Quit")
 	except:
+		print("Host unreachable: "+host)
+		bad=bad+1
 		badhost.write(i)
 
 badhost.close()
