@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #This program is licensed under GPL2.
 #DISCLAIMER
 #This program could break your network and get you fired.
