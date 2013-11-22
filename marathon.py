@@ -105,6 +105,8 @@ for i in hostsfile:
 		tn.close()
 		running.close()
 		startup.close()
+	except KeyboardInterrupt:
+		sys.exit("Quit")
 	except:
 		badnet.write(i)
 
