@@ -52,8 +52,8 @@ for i in hostsfile:
 		done=done+1
 		print("Host %s out of %s, %s failed"% (done,count,bad))
 		tn = telnetlib.Telnet(host)
-		running = open(date+"/running/"+host,"w")
-		startup = open(date+"/startup/"+host,"w")
+		running = open(date+"/running/"+host+".txt","w")
+		startup = open(date+"/startup/"+host+".txt","w")
 
 		index,match,text =tn.expect([".sername."],5)
 
