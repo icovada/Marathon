@@ -36,7 +36,7 @@ if not os.path.exists(date):
 else:
 	sys.exit("The destination folder exists already. Try again.")
 
-badnet	=open(date+"/badhost.txt","w")
+badhost	=open(date+"/badhost.txt","w")
 badpass	=open(date+"/badpass.txt","w")
 badenable=open(date+"/badenable.txt","w")
 
@@ -107,9 +107,9 @@ for i in hostsfile:
 	except KeyboardInterrupt:
 		sys.exit("Quit")
 	except:
-		badnet.write(i)
+		badhost.write(i)
 
-badnet.close()
+badhost.close()
 badenable.close()
 badpass.close()
 hostsfile.close()
