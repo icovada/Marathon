@@ -12,11 +12,14 @@ import sys
 import datetime
 import os
 import time
+import socket
 
 now = datetime.datetime.now()
 date = now.strftime("%Y%m%d-%H%M%S")
 uexec=[".\>"]
 priv=[".\#"]
+
+socket.setdefaulttimeout(8)
 
 #username="cisco"
 #password="cisco"
