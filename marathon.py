@@ -39,6 +39,7 @@ else:
 badhost	=open(date+"/badhost.txt","w")
 badpass	=open(date+"/badpass.txt","w")
 badenable=open(date+"/badenable.txt","w")
+badauth =open(date+"/doitmanually.txt","w")
 
 count = len(open("input.txt","r").readlines(  ))
 hostsfile = open("input.txt","rU")
@@ -86,7 +87,7 @@ for i in hostsfile:
 		index,match,text =tn.expect(["\nend","\n% Authorization failed"],60) #TACACS error
 		if index == 1:
 			print("Authorization failed: "+host)
-			badhost.write(i)
+			badauth.write(i)
 			bad=bad+1
 			continue
 
@@ -95,7 +96,7 @@ for i in hostsfile:
 		index,match,text=tn.expect(["\nend","\n% Authorization failed"],60) #TACACS error
 		if index == 1:
 			print("Authorization failed: "+host)
-			badhost.write(i)
+			badauth.write(i)
 			bad=bad+1
 			continue
 
@@ -115,3 +116,4 @@ badhost.close()
 badenable.close()
 badpass.close()
 hostsfile.close()
+badauth.close()
