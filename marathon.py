@@ -85,19 +85,19 @@ for i in hostsfile:
 		tn.write("show running\n")
 		index,match,text =tn.expect(["\nend","\n% Authorization failed"],60) #TACACS error
 		if index == 1:
-				print("Authorization failed: "+host)
-				badhost.write(i)
-				bad=bad+1
-				continue
+			print("Authorization failed: "+host)
+			badhost.write(i)
+			bad=bad+1
+			continue
 
 		running.write(text)
 		tn.write("show startup\n")
 		index,match,text=tn.expect(["\nend","\n% Authorization failed"],60) #TACACS error
 		if index == 1:
-				print("Authorization failed: "+host)
-				badhost.write(i)
-				bad=bad+1
-				continue
+			print("Authorization failed: "+host)
+			badhost.write(i)
+			bad=bad+1
+			continue
 
 		startup.write(text)
 		tn.write("terminal length 30\n")
