@@ -63,24 +63,26 @@ for i in hostsfile:
 		tn.write(password+"\n")
 		index,match,text =tn.expect([".\>",".\#"],5) #Either user EXEC or Priv EXEC
 		if index < 0:
-			print("Wrong login or password")
+			print("Wrong login or password: "+host)
 			badpass.write(i)
+			bad=bad+1
 			continue
 
 		if index == 0:  #Login enable
 			tn.write("enable\n")
 			index,match,text =tn.expect([".assword."],5)
 			tn.write(enable+"\n")
-			index,match,text =tn.expect(priv,2)
+			index,match,text =tn.expect(priv,5)
 			if index < 0:
-				print("Enable password is wrong")
+				print("Enable password is wrong: "+host)
 				badenable.write(i)
+				bad=bad+1
 				continue
 
 
 		#GET CONFIGURATION
 		tn.write("terminal length 0\n") #Write all config at once
-		index,match,text =tn.expect(priv,2)
+		index,match,text =tn.expect(priv,5)
 		tn.write("show running\n")
 		index,match,text =tn.expect(["\nend"],60)
 		running.write(text)
