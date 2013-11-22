@@ -54,13 +54,13 @@ for i in hostsfile:
 		running = open(date+"/running/"+i,"w")
 		startup = open(date+"/startup/"+i,"w")
 
-		index,match,text =tn.expect([".sername."],2)
+		index,match,text =tn.expect([".sername."],5)
 
 		tn.write(username+"\n")
-		index,match,text =tn.expect([".assword."],2)
+		index,match,text =tn.expect([".assword."],5)
 
 		tn.write(password+"\n")
-		index,match,text =tn.expect([".\>",".\#"],2) #Either user EXEC or Priv EXEC
+		index,match,text =tn.expect([".\>",".\#"],5) #Either user EXEC or Priv EXEC
 		if index < 0:
 			print("Wrong login or password")
 			badpass.write(i)
@@ -68,7 +68,7 @@ for i in hostsfile:
 
 		if index == 0:  #Login enable
 			tn.write("enable\n")
-			index,match,text =tn.expect([".assword."],2)
+			index,match,text =tn.expect([".assword."],5)
 			tn.write(enable+"\n")
 			index,match,text =tn.expect(priv,2)
 			if index < 0:
@@ -81,10 +81,10 @@ for i in hostsfile:
 		tn.write("terminal length 0\n") #Write all config at once
 		index,match,text =tn.expect(priv,2)
 		tn.write("show running\n")
-		index,match,text =tn.expect(["\nend"],10)
+		index,match,text =tn.expect(["\nend"],60)
 		running.write(text)
 		tn.write("show startup\n")
-		index,match,text=tn.expect(["\nend"],0)
+		index,match,text=tn.expect(["\nend"],60)
 		startup.write(text)
 		tn.write("terminal length 30\n")
 		tn.close()
